@@ -1,0 +1,8 @@
+node_modules
+build
+apidoc
+.vscode
+*.log
+.tmp
+.idea
+package-lock.json
