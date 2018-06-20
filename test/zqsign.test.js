@@ -96,7 +96,6 @@ test('pdfTemplate', async (t) => {
 })
 
 test('signAuto', async (t) => {
-    console.log(contract.no, [user.user_code])
     const result = await sign.signAuto(contract.no, [user.user_code])
     t.is(result.code, '0')
 })
@@ -136,6 +135,6 @@ test('completionContract', async (t) => {
     t.is(result.code, '0')
 })
 
-test.only('a2e', async (t) => {
+test('a2e', async (t) => {
     t.is(await sign.a2e('任无', '150203199512020472', 1), true)
 })
