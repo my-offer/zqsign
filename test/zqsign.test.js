@@ -37,31 +37,30 @@ const user = {
     mobile: '13000000000',
 }
 
-// test.before('注册用户', async (t) => {
-//     try {
-//         await sign.personReg(user.user_code, user.name, user.id_card_no, user.mobile)
-//     }
-//     catch (err) {
+test.before('注册用户', async (t) => {
+    try {
+        await sign.personReg(user.user_code, user.name, user.id_card_no, user.mobile)
+    }
+    catch (err) {
         
-//     }
-//     t.pass()
-// })
+    }
+    t.pass()
+})
 
 const contract = {
     no: fakeId(),
     name: '合同协议书'
 }
 
-// test.before('上传合同', async (t) => {
-//     const pdfFileContent = fs.readFileSync(path.join(__dirname, './fixtures/contract.pdf'))
-//     const pdfFileContentBase64 = Buffer.from(pdfFileContent).toString('base64')
-//     // const pdfFileContentBase64 = "JVBERi0xLjYNJeLjz9MNCjE4MyAwIG9iag08PC9MaW5lYXJpemVkIDEvTCAxOTEzNzEv"
-//     const result = await sign.uploadPdf(contract.no, contract.name, pdfFileContentBase64)
-//     t.is(result.code, '0')
-// })
+test.before('上传合同', async (t) => {
+    const pdfFileContent = fs.readFileSync(path.join(__dirname, './fixtures/contract.pdf'))
+    const pdfFileContentBase64 = Buffer.from(pdfFileContent).toString('base64')
+    const result = await sign.uploadPdf(contract.no, contract.name, pdfFileContentBase64)
+    t.is(result.code, '0')
+})
 
-test('personReg', async (t) => {
-    const result = await sign.personReg(fakeId(), user.name, user.id_card_no, user.mobile)
+test.only('personReg', async (t) => {
+    const result = await sign.personReg(fakeId(), '杨正祥', '533527198909210238', user.mobile)
     t.is(result.code, '0')
 })
 
@@ -136,5 +135,6 @@ test('completionContract', async (t) => {
 })
 
 test('a2e', async (t) => {
-    t.is(await sign.a2e('任无', '150203199512020472', 1), true)
+    // t.is(await sign.a2e('任无你好啊', '150203199512020462', 1, '/zqsign-web-identify/test/a2e'), true)
+    t.is(await sign.a2e('杨正祥', '533527198909210238', 3, '/a2e'), true)
 })
